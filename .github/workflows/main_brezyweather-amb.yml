@@ -6,7 +6,7 @@ name: Build and deploy ASP.Net Core app to Azure Web App - brezyweather-amb
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'production'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -52,6 +52,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'brezyweather-amb'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_f9ea6822473b41739866df09b2a7b578 }}
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_046072501C7E4D988B97ED09972BF585 }}
           package: .
